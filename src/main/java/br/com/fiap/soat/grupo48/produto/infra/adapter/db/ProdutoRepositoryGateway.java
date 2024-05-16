@@ -54,10 +54,10 @@ public class ProdutoRepositoryGateway implements IProdutoRepositoryGateway {
   @Override
   public Produto salvar(Produto produto) throws ProdutoNotFoundException {
     ProdutoEntity produtoEntity;
-    if (Objects.isNull(produto.getCodigo())) {
+    if (Objects.isNull(produto.getId())) {
       produtoEntity = new ProdutoEntity(produto);
     } else {
-      var produtoEncontrado = this.springProdutoRepository.findById(produto.getCodigo());
+      var produtoEncontrado = this.springProdutoRepository.findById(produto.getId());
       if (produtoEncontrado.isEmpty()) {
         throw new ProdutoNotFoundException("Produto não encontrado");
       }

@@ -13,7 +13,7 @@ import java.util.UUID;
 @AllArgsConstructor
 public class Produto {
   @Setter
-  private UUID codigo;
+  private UUID id;
   @Setter
   private String nome;
   @Setter

@@ -43,7 +43,7 @@ public class ProdutoEntity {
    * @param produto objeto do domínio
    */
   public ProdutoEntity(Produto produto) {
-    this.codigo = produto.getCodigo();
+    this.codigo = produto.getId();
     this.atualizar(produto);
   }
 

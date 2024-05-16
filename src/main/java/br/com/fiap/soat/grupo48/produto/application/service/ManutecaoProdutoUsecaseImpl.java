@@ -39,7 +39,7 @@ public class ManutecaoProdutoUsecaseImpl implements IProdutoPort {
   @Override
   public Produto atualizarProduto(UUID codigo, Produto produto) throws ProdutoNotFoundException {
     Produto produtoAtu = this.produtoRepository.buscarPeloCodigo(codigo);
-    if (Objects.nonNull(produtoAtu) && produto.getCodigo().equals(codigo)) {
+    if (Objects.nonNull(produtoAtu) && produto.getId().equals(codigo)) {
       produtoAtu.atualiza(produto);
       return this.produtoRepository.salvar(produtoAtu);
     } else {
