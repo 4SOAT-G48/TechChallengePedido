@@ -12,7 +12,7 @@ import java.util.UUID;
 public interface IProdutoPort {
   List<Produto> buscarProdutos();
 
-  Produto buscarPeloCodigo(UUID codigo) throws ProdutoNotFoundException;
+  Produto buscarPeloId(UUID codigo) throws ProdutoNotFoundException;
 
   Produto criarProduto(Produto produto) throws ProdutoNotFoundException;
 

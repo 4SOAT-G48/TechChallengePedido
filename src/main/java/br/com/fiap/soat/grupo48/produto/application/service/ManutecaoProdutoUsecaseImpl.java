@@ -27,19 +27,20 @@ public class ManutecaoProdutoUsecaseImpl implements IProdutoPort {
   }
 
   @Override
-  public Produto buscarPeloCodigo(UUID codigo) throws ProdutoNotFoundException {
-    return this.produtoRepository.buscarPeloCodigo(codigo);
+  public Produto buscarPeloId(UUID id) throws ProdutoNotFoundException {
+    return this.produtoRepository.buscarPeloId(id);
   }
 
   @Override
   public Produto criarProduto(Produto produto) throws ProdutoNotFoundException {
+
     return this.produtoRepository.salvar(produto);
   }
 
   @Override
-  public Produto atualizarProduto(UUID codigo, Produto produto) throws ProdutoNotFoundException {
-    Produto produtoAtu = this.produtoRepository.buscarPeloCodigo(codigo);
-    if (Objects.nonNull(produtoAtu) && produto.getId().equals(codigo)) {
+  public Produto atualizarProduto(UUID id, Produto produto) throws ProdutoNotFoundException {
+    Produto produtoAtu = this.produtoRepository.buscarPeloId(id);
+    if (Objects.nonNull(produtoAtu) && produtoAtu.getId().equals(id)) {
       produtoAtu.atualiza(produto);
       return this.produtoRepository.salvar(produtoAtu);
     } else {
@@ -49,7 +50,7 @@ public class ManutecaoProdutoUsecaseImpl implements IProdutoPort {
 
   @Override
   public boolean excluirProduto(UUID codigo) throws ProdutoNotFoundException {
-    Produto produtoASerExcluido = this.produtoRepository.buscarPeloCodigo(codigo);
+    Produto produtoASerExcluido = this.produtoRepository.buscarPeloId(codigo);
     if (Objects.nonNull(produtoASerExcluido)) {
       return this.produtoRepository.excluir(codigo);
     } else {

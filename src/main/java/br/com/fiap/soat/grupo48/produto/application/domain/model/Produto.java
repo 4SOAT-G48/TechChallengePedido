@@ -26,6 +26,8 @@ public class Produto {
   private SituacaoProduto situacao;
   private List<String> imagens;
 
+  //TODO: adicionar as datas de cadastro e atualização
+
   public void atualiza(Produto produto) {
     this.nome = produto.getNome();
     this.categoria = produto.getCategoria();

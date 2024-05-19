@@ -15,7 +15,7 @@ public interface IProdutoRepositoryGateway {
 
   Page<Produto> buscarTodos(Pageable pageable);
 
-  Produto buscarPeloCodigo(UUID codigo) throws ProdutoNotFoundException;
+  Produto buscarPeloId(UUID id) throws ProdutoNotFoundException;
 
   Produto salvar(Produto produto) throws ProdutoNotFoundException;
 

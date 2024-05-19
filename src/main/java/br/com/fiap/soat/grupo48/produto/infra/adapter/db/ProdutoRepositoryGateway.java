@@ -13,7 +13,6 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 /**
  * Implementação de classe para manutenção do produto.
@@ -42,10 +41,10 @@ public class ProdutoRepositoryGateway implements IProdutoRepositoryGateway {
   }
 
   @Override
-  public Produto buscarPeloCodigo(UUID codigo) throws ProdutoNotFoundException {
-    Optional<ProdutoEntity> produtoEntityOptional = this.springProdutoRepository.findById(codigo);
+  public Produto buscarPeloId(UUID id) throws ProdutoNotFoundException {
+    Optional<ProdutoEntity> produtoEntityOptional = this.springProdutoRepository.findById(id);
     if (produtoEntityOptional.isEmpty()) {
-      throw new ProdutoNotFoundException("Produto não encontrado");
+      throw new ProdutoNotFoundException("Produto não encontrado com o ID: " + id);
     }
     ProdutoEntity produtoEntity = produtoEntityOptional.get();
     return produtoEntity.toProduto();
@@ -59,7 +58,7 @@ public class ProdutoRepositoryGateway implements IProdutoRepositoryGateway {
     } else {
       var produtoEncontrado = this.springProdutoRepository.findById(produto.getId());
       if (produtoEncontrado.isEmpty()) {
-        throw new ProdutoNotFoundException("Produto não encontrado");
+        throw new ProdutoNotFoundException("Produto não encontrado com o ID: " + produto.getId());
       }
       produtoEntity = produtoEncontrado.get();
       produtoEntity.atualizar(produto);
@@ -69,12 +68,12 @@ public class ProdutoRepositoryGateway implements IProdutoRepositoryGateway {
   }
 
   @Override
-  public boolean excluir(UUID codigo) throws ProdutoNotFoundException {
-    Optional<ProdutoEntity> produtoEntityOptional = this.springProdutoRepository.findById(codigo);
+  public boolean excluir(UUID id) throws ProdutoNotFoundException {
+    Optional<ProdutoEntity> produtoEntityOptional = this.springProdutoRepository.findById(id);
     if (produtoEntityOptional.isEmpty()) {
       throw new ProdutoNotFoundException("Não foi possível excluir o produto");
     }
-    this.springProdutoRepository.deleteById(codigo);
+    this.springProdutoRepository.deleteById(id);
     return true;
   }
 
@@ -82,12 +81,12 @@ public class ProdutoRepositoryGateway implements IProdutoRepositoryGateway {
   @Override
   public List<Produto> buscarPorCategoria(Categoria categoria) {
     List<ProdutoEntity> produtoEntity = this.springProdutoRepository.findByCategoria(categoria);
-    return produtoEntity.stream().map(ProdutoEntity::toProduto).collect(Collectors.toList());
+    return produtoEntity.stream().map(ProdutoEntity::toProduto).toList();
   }
 
   @Override
   public List<Produto> buscarPorCategoriaESituacao(Categoria categoria, SituacaoProduto situacao) {
     List<ProdutoEntity> produtoEntity = this.springProdutoRepository.findByCategoriaAndSituacao(categoria, situacao);
-    return produtoEntity.stream().map(ProdutoEntity::toProduto).collect(Collectors.toList());
+    return produtoEntity.stream().map(ProdutoEntity::toProduto).toList();
   }
 }

@@ -25,7 +25,7 @@ import java.util.UUID;
 public class ProdutoEntity {
   @Id
   @GeneratedValue(strategy = GenerationType.UUID)
-  private UUID codigo;
+  private UUID id;
   private String nome;
   @Enumerated(EnumType.STRING)
   private Categoria categoria;
@@ -43,7 +43,7 @@ public class ProdutoEntity {
    * @param produto objeto do domínio
    */
   public ProdutoEntity(Produto produto) {
-    this.codigo = produto.getId();
+    this.id = produto.getId();
     this.atualizar(produto);
   }
 
@@ -59,7 +59,7 @@ public class ProdutoEntity {
     } else {
       imagens = this.images;
     }
-    return new Produto(this.codigo, this.nome, this.categoria, this.preco, this.descricao, this.situacao,
+    return new Produto(this.id, this.nome, this.categoria, this.preco, this.descricao, this.situacao,
         imagens);
   }
 

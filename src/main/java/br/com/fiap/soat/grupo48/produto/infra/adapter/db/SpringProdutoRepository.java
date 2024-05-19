@@ -17,6 +17,6 @@ public interface SpringProdutoRepository extends JpaRepository<ProdutoEntity, UU
 
   List<ProdutoEntity> findByCategoriaAndSituacao(Categoria categoria, SituacaoProduto situacao);
 
-  @Query(value = "SELECT p FROM ProdutoEntity p ORDER BY p.codigo")
+  @Query(value = "SELECT p FROM ProdutoEntity p ORDER BY p.id")
   Page<ProdutoEntity> findProdutos(Pageable pageable);
 }
