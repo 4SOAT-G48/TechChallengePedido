@@ -1,0 +1,41 @@
+# Server configuration
+server:
+  port: ${SERVER_PORT}
+
+# Importing the .env
+spring:
+  config:
+    import: optional:file:.env[.properties]
+  profiles:
+    active: ${SPRING_PROFILE}
+  datasource:
+    url: jdbc:${POSTGRES_URL}
+    username: ${POSTGRES_USER}
+    password: ${POSTGRES_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    #database-platform: org.hibernate.dialect.PostgreSQLDialect
+    #open-in-view: false
+    defer-datasource-initialization: ${JPA_DEFER_DATASOURCE_INITIALIZATION}
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  output:
+    ansi:
+      enabled: ALWAYS
+
+# Uncomment this line if facing issues with Hibernate
+logging:
+  level:
+    org.hibernate: ${LOG_LEVEL}
+    root: ${LOG_LEVEL}
+    org.springframework: ${LOG_LEVEL}
+  file:
+    name: ${LOG_PATH}
+
+# Configuration for OpenAPI documentation
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    path: /swagger-ui-custom.html
