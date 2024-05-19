@@ -54,7 +54,7 @@ class ProdutoTest {
   @Nested
   class deveAtualizarProduto {
     @Test
-    void deveAtualizarNome() {
+    void testAtualizarNome() {
       // Arrange
       Produto produto = ProdutoHelper.gerarProduto();
 
@@ -66,7 +66,7 @@ class ProdutoTest {
     }
 
     @Test
-    void deveAtualizarDescricao() {
+    void testAtualizarDescricao() {
       // Arrange
       Produto produto = ProdutoHelper.gerarProduto();
 
@@ -78,7 +78,7 @@ class ProdutoTest {
     }
 
     @Test
-    void deveAtualizarPreco() {
+    void testAtualizarPreco() {
       // Arrange
       Produto produto = ProdutoHelper.gerarProduto();
 
@@ -90,7 +90,7 @@ class ProdutoTest {
     }
 
     @Test
-    void deveAtualizarSituacao() {
+    void testAtualizarSituacao() {
       // Arrange
       Produto produto = ProdutoHelper.gerarProduto();
 
@@ -102,7 +102,7 @@ class ProdutoTest {
     }
 
     @Test
-    void deveAtulizarCategoria() {
+    void testAtulizarCategoria() {
       // Arrange
       Produto produto = ProdutoHelper.gerarProduto();
 
@@ -114,7 +114,7 @@ class ProdutoTest {
     }
 
     @Test
-    void deveAtualizarTodosOsAtributos() {
+    void testAtualizarTodosOsAtributos() {
       // Arrange
       Produto produto = ProdutoHelper.gerarProduto();
       Produto produto1 = ProdutoHelper.gerarProduto();
@@ -140,7 +140,7 @@ class ProdutoTest {
   @Nested
   class deveValidarItensPadraoProduto {
     @Test
-    void deveValidarToString() {
+    void testValidarToString() {
       // Arrange
       Produto produto = ProdutoHelper.gerarProduto();
 
@@ -156,21 +156,43 @@ class ProdutoTest {
     }
 
     @Test
-    void deveValidarEqualsEHashCode() {
+    void testValidarEqualsEHashCode() {
       // Arrange
+      var id = UUID.randomUUID();
       Produto produto1 = ProdutoHelper.gerarProduto();
+      produto1.setId(id);
       Produto produto2 = ProdutoHelper.gerarProduto();
+      produto2.setId(id);
       Produto produto3 = ProdutoHelper.gerarProduto();
+      produto3.setId(UUID.randomUUID());
       produto3.setDescricao("Produto diferente");
 
+      // Testando produtos com campos nulos
+      Produto produto4 = ProdutoHelper.gerarProduto();
+      produto4.setNome(null); // assumindo que 'nome' é um campo relevante no equals e hashCode
+
+      Produto produto5 = ProdutoHelper.gerarProduto();
+      produto5.setNome(null); // outro produto com 'nome' nulo para comparar com produto4
+
       // Assert
+      // teste completo do equals e hashCode
       assertThat(produto1).isEqualTo(produto1)
           .isNotEqualTo(null)
           .isNotEqualTo(new Object())
           .isEqualTo(produto2)
+          .hasSameHashCodeAs(produto2)
           .isNotEqualTo(produto3)
-          .hasSameHashCodeAs(produto2);
-      assertThat(produto1.hashCode()).isNotEqualTo(produto3.hashCode());
+          .doesNotHaveSameHashCodeAs(produto3)
+          .isNotEqualTo(produto4); // verificar com um produto com campo nulo diferente
+
+      assertThat(produto1.hashCode())
+          .isNotEqualTo(produto3.hashCode());
+
+      // Testando produtos com campos nulos
+      assertThat(produto4)
+          .isEqualTo(produto5)
+          .hasSameHashCodeAs(produto5);
+
     }
 
   }
