@@ -49,10 +49,10 @@ public class ManutecaoProdutoUsecaseImpl implements IProdutoPort {
   }
 
   @Override
-  public boolean excluirProduto(UUID codigo) throws ProdutoNotFoundException {
-    Produto produtoASerExcluido = this.produtoRepository.buscarPeloId(codigo);
+  public boolean excluirProduto(UUID id) throws ProdutoNotFoundException {
+    Produto produtoASerExcluido = this.produtoRepository.buscarPeloId(id);
     if (Objects.nonNull(produtoASerExcluido)) {
-      return this.produtoRepository.excluir(codigo);
+      return this.produtoRepository.excluir(id);
     } else {
       throw new ProdutoNotFoundException("Produto não apresenta o ID correto");
     }

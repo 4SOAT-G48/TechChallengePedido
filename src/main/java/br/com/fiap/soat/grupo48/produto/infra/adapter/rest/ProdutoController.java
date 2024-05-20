@@ -73,13 +73,13 @@ public class ProdutoController {
       @ApiResponse(responseCode = "404", description = "Produto não encontrado",
           content = @Content)})
   @GetMapping(
-      value = "/{codigo}",
+      value = "/{id}",
       produces = MediaType.APPLICATION_JSON_VALUE
   )
-  public ResponseEntity<?> getProduto(@PathVariable UUID codigo) {
+  public ResponseEntity<?> getProduto(@PathVariable UUID id) {
     Produto produto = null;
     try {
-      produto = this.produtoServicePort.buscarPeloId(codigo);
+      produto = this.produtoServicePort.buscarPeloId(id);
       return new ResponseEntity<>(produto, HttpStatus.OK);
     } catch (ProdutoNotFoundException e) {
       return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
@@ -102,14 +102,14 @@ public class ProdutoController {
   }
 
   @PutMapping(
-      value = "/{codigo}",
+      value = "/{id}",
       consumes = MediaType.APPLICATION_JSON_VALUE,
       produces = MediaType.APPLICATION_JSON_VALUE
   )
-  public ResponseEntity<?> updateProduto(@PathVariable final UUID codigo, @RequestBody final Produto request) {
+  public ResponseEntity<?> updateProduto(@PathVariable final UUID id, @RequestBody final Produto request) {
     log.info("Atualizando produto: {}", request);
     try {
-      Produto produtoAtualizado = this.produtoServicePort.atualizarProduto(codigo, request);
+      Produto produtoAtualizado = this.produtoServicePort.atualizarProduto(id, request);
       return new ResponseEntity<>(produtoAtualizado, HttpStatus.ACCEPTED);
     } catch (ProdutoNotFoundException e) {
       return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
@@ -117,12 +117,12 @@ public class ProdutoController {
   }
 
   @DeleteMapping(
-      value = "{codigo}",
+      value = "{id}",
       produces = MediaType.APPLICATION_JSON_VALUE
   )
-  public ResponseEntity<?> deleteProduto(@PathVariable UUID codigo) {
+  public ResponseEntity<?> deleteProduto(@PathVariable UUID id) {
     try {
-      this.produtoServicePort.excluirProduto(codigo);
+      this.produtoServicePort.excluirProduto(id);
       return new ResponseEntity<>("Produto excluído", HttpStatus.OK);
     } catch (ApplicationException e) {
       return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());

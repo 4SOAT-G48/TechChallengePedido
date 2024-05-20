@@ -23,10 +23,10 @@ import java.util.List;
 @RequestMapping("api/produto/categoria")
 public class ProdutoCategoriaController {
 
-  private final IProdutoPort produtoPort;
+  private final IProdutoPort produtoServicePort;
 
-  public ProdutoCategoriaController(IProdutoPort produtoPedidoEmAndamentoPort) {
-    this.produtoPort = produtoPedidoEmAndamentoPort;
+  public ProdutoCategoriaController(IProdutoPort produtoServicePort) {
+    this.produtoServicePort = produtoServicePort;
   }
 
   @Operation(summary = "Recupera lista de produtos por categoria")
@@ -37,7 +37,7 @@ public class ProdutoCategoriaController {
   })
   @GetMapping(value = "/{categoria}")
   ResponseEntity<List<Produto>> getPorCategoria(@PathVariable Categoria categoria) {
-    List<Produto> produtos = this.produtoPort.buscarProdutosPorCategoria(categoria);
+    List<Produto> produtos = this.produtoServicePort.buscarProdutosPorCategoria(categoria);
     return new ResponseEntity<>(produtos, HttpStatus.OK);
   }
 
@@ -49,7 +49,7 @@ public class ProdutoCategoriaController {
   })
   @GetMapping("/disponiveis/{categoria}")
   ResponseEntity<List<Produto>> getPorCategoriaDisponivel(@PathVariable Categoria categoria) {
-    List<Produto> produtos = this.produtoPort.buscarProdutosDiponiveisPorCategoria(categoria);
+    List<Produto> produtos = this.produtoServicePort.buscarProdutosDiponiveisPorCategoria(categoria);
     return new ResponseEntity<>(produtos, HttpStatus.OK);
   }
 }

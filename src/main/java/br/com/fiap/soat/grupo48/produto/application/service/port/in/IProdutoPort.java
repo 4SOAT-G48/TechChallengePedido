@@ -12,13 +12,13 @@ import java.util.UUID;
 public interface IProdutoPort {
   List<Produto> buscarProdutos();
 
-  Produto buscarPeloId(UUID codigo) throws ProdutoNotFoundException;
+  Produto buscarPeloId(UUID id) throws ProdutoNotFoundException;
 
   Produto criarProduto(Produto produto) throws ProdutoNotFoundException;
 
-  Produto atualizarProduto(UUID codigo, Produto produto) throws ProdutoNotFoundException;
+  Produto atualizarProduto(UUID id, Produto produto) throws ProdutoNotFoundException;
 
-  boolean excluirProduto(UUID codigo) throws ProdutoNotFoundException;
+  boolean excluirProduto(UUID id) throws ProdutoNotFoundException;
 
   Page<Produto> buscarProdutosPaginados(Pageable pageable);
 

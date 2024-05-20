@@ -121,7 +121,7 @@ class ProdutoControllerTest {
           .thenReturn(produto);
 
       // Act & Assert
-      mockMvc.perform(put("/api/produtos/{codigo}", id)
+      mockMvc.perform(put("/api/produtos/{id}", id)
               .contentType(MediaType.APPLICATION_JSON)
               .content(ProdutoHelper.asJsonString(produtoRequest)))
           .andExpect(status().isAccepted());
@@ -137,7 +137,7 @@ class ProdutoControllerTest {
       produtoRequest.setId(id);
 
       // Act & Assert
-      mockMvc.perform(put("/api/produtos/{codigo}", id)
+      mockMvc.perform(put("/api/produtos/{id}", id)
               .contentType(MediaType.APPLICATION_XML)
               .content(ProdutoHelper.asXmlString(produtoRequest)))
           .andExpect(status().isUnsupportedMediaType());
@@ -158,7 +158,7 @@ class ProdutoControllerTest {
           .thenThrow(new ProdutoNotFoundException(mensagemErro));
 
       // Act & Assert
-      mockMvc.perform(put("/api/produtos/{codigo}", id)
+      mockMvc.perform(put("/api/produtos/{id}", id)
               .contentType(MediaType.APPLICATION_JSON)
               .content(ProdutoHelper.asJsonString(produtoRequest)))
           //só usar durante o desenvolvimento do teste
@@ -180,7 +180,7 @@ class ProdutoControllerTest {
           .thenThrow(new ProdutoNotFoundException(mensagemErro));
 
       // Act & Assert
-      mockMvc.perform(put("/api/produtos/{codigo}", id)
+      mockMvc.perform(put("/api/produtos/{id}", id)
               .contentType(MediaType.APPLICATION_JSON)
               .content(ProdutoHelper.asJsonString(produtoRequest)))
           //só usar durante o desenvolvimento do teste
@@ -204,7 +204,7 @@ class ProdutoControllerTest {
           .thenReturn(produto);
 
       // Act & Assert
-      mockMvc.perform(get("/api/produtos/{codigo}", id)
+      mockMvc.perform(get("/api/produtos/{id}", id)
               .contentType(MediaType.APPLICATION_JSON))
           .andExpect(status().isOk());
       verify(manutecaoProdutoUsecase, times(1))
@@ -220,7 +220,7 @@ class ProdutoControllerTest {
           .thenThrow(new ProdutoNotFoundException("Produto não encontrado"));
 
       // Act & Assert
-      mockMvc.perform(get("/api/produtos/{codigo}", id))
+      mockMvc.perform(get("/api/produtos/{id}", id))
           .andExpect(status().isNotFound());
       verify(manutecaoProdutoUsecase, times(1))
           .buscarPeloId(any(UUID.class));
@@ -240,7 +240,7 @@ class ProdutoControllerTest {
           .thenReturn(true);
 
       // Act & Assert
-      mockMvc.perform(delete("/api/produtos/{codigo}", id)
+      mockMvc.perform(delete("/api/produtos/{id}", id)
               .contentType(MediaType.APPLICATION_JSON))
           .andExpect(status().isOk())
           .andExpect(content().string("Produto excluído"));
@@ -259,7 +259,7 @@ class ProdutoControllerTest {
           .thenThrow(new ProdutoNotFoundException(mensagemErro));
 
       // Act & Assert
-      mockMvc.perform(delete("/api/produtos/{codigo}", id)
+      mockMvc.perform(delete("/api/produtos/{id}", id)
               .contentType(MediaType.APPLICATION_JSON))
           //só usar durante o desenvolvimento do teste
           //.andDo(print())

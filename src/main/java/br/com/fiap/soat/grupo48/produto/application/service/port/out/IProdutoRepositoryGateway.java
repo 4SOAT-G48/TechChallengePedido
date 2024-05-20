@@ -19,7 +19,7 @@ public interface IProdutoRepositoryGateway {
 
   Produto salvar(Produto produto) throws ProdutoNotFoundException;
 
-  boolean excluir(UUID codigo) throws ProdutoNotFoundException;
+  boolean excluir(UUID id) throws ProdutoNotFoundException;
 
   List<Produto> buscarPorCategoria(Categoria categoria);
 

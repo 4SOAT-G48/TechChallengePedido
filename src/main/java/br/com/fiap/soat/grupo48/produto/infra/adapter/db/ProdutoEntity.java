@@ -34,7 +34,7 @@ public class ProdutoEntity {
   @Enumerated(EnumType.STRING)
   private SituacaoProduto situacao;
   @ElementCollection
-  @CollectionTable(name = "produto_imagens", joinColumns = @JoinColumn(name = "produto_codigo"))
+  @CollectionTable(name = "produto_imagens", joinColumns = @JoinColumn(name = "produto_id"))
   private List<String> images;
 
   /**
