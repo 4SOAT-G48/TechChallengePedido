@@ -1,11 +1,11 @@
 package br.com.fiap.soat.grupo48.produto.application.service;
 
-import br.com.fiap.soat.grupo48.pedido.utils.ProdutoHelper;
 import br.com.fiap.soat.grupo48.produto.application.domain.model.Categoria;
 import br.com.fiap.soat.grupo48.produto.application.domain.model.Produto;
 import br.com.fiap.soat.grupo48.produto.application.domain.model.SituacaoProduto;
 import br.com.fiap.soat.grupo48.produto.application.service.exception.ProdutoNotFoundException;
 import br.com.fiap.soat.grupo48.produto.application.service.port.out.IProdutoRepositoryGateway;
+import br.com.fiap.soat.grupo48.produto.utils.ProdutoHelper;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
