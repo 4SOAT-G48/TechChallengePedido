@@ -1,6 +1,6 @@
 package br.com.fiap.soat.grupo48.produto.application.domain.model;
 
-import br.com.fiap.soat.grupo48.pedido.utils.ProdutoHelper;
+import br.com.fiap.soat.grupo48.produto.utils.ProdutoHelper;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 

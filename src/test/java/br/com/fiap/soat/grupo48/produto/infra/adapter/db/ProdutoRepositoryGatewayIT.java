@@ -1,8 +1,8 @@
 package br.com.fiap.soat.grupo48.produto.infra.adapter.db;
 
-import br.com.fiap.soat.grupo48.pedido.utils.ProdutoHelper;
 import br.com.fiap.soat.grupo48.produto.application.domain.model.Produto;
 import br.com.fiap.soat.grupo48.produto.application.service.exception.ProdutoNotFoundException;
+import br.com.fiap.soat.grupo48.produto.utils.ProdutoHelper;
 import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;

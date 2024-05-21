@@ -1,11 +1,11 @@
 package br.com.fiap.soat.grupo48.produto.infra.adapter.rest;
 
-import br.com.fiap.soat.grupo48.pedido.utils.ProdutoHelper;
 import br.com.fiap.soat.grupo48.produto.application.domain.model.Produto;
 import br.com.fiap.soat.grupo48.produto.application.service.ManutecaoProdutoUsecaseImpl;
 import br.com.fiap.soat.grupo48.produto.application.service.exception.ProdutoNotFoundException;
 import br.com.fiap.soat.grupo48.produto.infra.adapter.db.ProdutoRepositoryGateway;
 import br.com.fiap.soat.grupo48.produto.infra.adapter.db.SpringProdutoRepository;
+import br.com.fiap.soat.grupo48.produto.utils.ProdutoHelper;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;

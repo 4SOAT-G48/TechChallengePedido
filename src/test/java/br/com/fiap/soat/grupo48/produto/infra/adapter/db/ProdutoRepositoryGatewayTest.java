@@ -1,10 +1,10 @@
 package br.com.fiap.soat.grupo48.produto.infra.adapter.db;
 
-import br.com.fiap.soat.grupo48.pedido.utils.ProdutoHelper;
 import br.com.fiap.soat.grupo48.produto.application.domain.model.Categoria;
 import br.com.fiap.soat.grupo48.produto.application.domain.model.Produto;
 import br.com.fiap.soat.grupo48.produto.application.domain.model.SituacaoProduto;
 import br.com.fiap.soat.grupo48.produto.application.service.exception.ProdutoNotFoundException;
+import br.com.fiap.soat.grupo48.produto.utils.ProdutoHelper;
 import io.qameta.allure.Description;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
