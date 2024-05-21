@@ -19,7 +19,7 @@ RUN mvn clean install -DskipTests
 FROM eclipse-temurin:17-jdk-alpine
 
 # Copiando o arquivo jar da fase de build
-COPY --from=build /app/target/grupo48-pedido-0.0.1.jar /app.jar
+COPY --from=build /app/target/grupo48-pedido-0.0.1-SNAPSHOT.jar /app.jar
 
 # Porta padrão da aplicação Spring Boot
 EXPOSE 8080
