@@ -19,4 +19,6 @@ public interface IPedidoRepositoryGateway {
   SituacaoPedido buscaSituacaoPedido(UUID id);
 
   Pedido buscarPedidoPeloPagamento(UUID pagamentoId);
+
+  Pedido buscarPeloId(UUID id);
 }

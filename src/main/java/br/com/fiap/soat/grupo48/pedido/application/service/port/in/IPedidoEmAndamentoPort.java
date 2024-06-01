@@ -5,6 +5,8 @@ import br.com.fiap.soat.grupo48.pedido.application.service.exception.ClienteNaoI
 import br.com.fiap.soat.grupo48.pedido.application.service.exception.MetodoPagamentoInvalidoException;
 import br.com.fiap.soat.grupo48.produto.application.service.exception.ProdutoNotFoundException;
 
+import java.util.UUID;
+
 public interface IPedidoEmAndamentoPort {
   /**
    * Faze de montagem do pedido.
@@ -17,7 +19,10 @@ public interface IPedidoEmAndamentoPort {
   Pedido montaPedido(Pedido pedido) throws MetodoPagamentoInvalidoException, ProdutoNotFoundException, ClienteNaoInformadoException;
 
   /**
-   * Passa para o pagamento.
+   * Registra que o pagamento foi efetuado
+   *
+   * @param pedidoId    id do pedido
+   * @param pagamentoId id do pagamento
    */
-  void efetuaPagamento();
+  void pagamentoEfetuado(UUID pedidoId, UUID pagamentoId);
 }

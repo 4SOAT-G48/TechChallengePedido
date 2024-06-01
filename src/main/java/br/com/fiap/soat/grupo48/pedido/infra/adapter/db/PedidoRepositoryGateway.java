@@ -76,4 +76,10 @@ public class PedidoRepositoryGateway implements IPedidoRepositoryGateway {
     PedidoEntity byPagamento = this.springPedidoRepository.findByPagamentoId(pagamentoId);
     return byPagamento.toPedido();
   }
+
+  @Override
+  public Pedido buscarPeloId(UUID id) {
+    return this.springPedidoRepository.findById(id).map(PedidoEntity::toPedido).orElse(null);
+  }
+
 }

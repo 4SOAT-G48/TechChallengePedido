@@ -6,36 +6,33 @@ import br.com.fiap.soat.grupo48.pedido.application.domain.model.PedidoItem;
 import br.com.fiap.soat.grupo48.pedido.application.domain.valueobject.GeradorDeNumeroSequencial;
 import br.com.fiap.soat.grupo48.pedido.application.service.exception.ClienteNaoInformadoException;
 import br.com.fiap.soat.grupo48.pedido.application.service.port.in.IPedidoEmAndamentoPort;
+import br.com.fiap.soat.grupo48.pedido.application.service.port.out.IPedidoPublishQueueAdapter;
 import br.com.fiap.soat.grupo48.pedido.application.service.port.out.IPedidoRepositoryGateway;
 import br.com.fiap.soat.grupo48.produto.application.service.exception.ProdutoNotFoundException;
 import br.com.fiap.soat.grupo48.produto.application.service.port.out.IProdutoRepositoryGateway;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Objects;
+import java.util.UUID;
 
 public class PedidoEmAndamentoUseCaseImpl implements IPedidoEmAndamentoPort {
   private final IPedidoRepositoryGateway pedidoRepositoryGateway;
 
   private final IProdutoRepositoryGateway produtoRepositoryGateway;
+  private final IPedidoPublishQueueAdapter pedidoPublishQueueAdapter;
 
-  public PedidoEmAndamentoUseCaseImpl(IPedidoRepositoryGateway pedidoRepositoryGateway, IProdutoRepositoryGateway produtoRepositoryGateway) {
+  public PedidoEmAndamentoUseCaseImpl(IPedidoRepositoryGateway pedidoRepositoryGateway, IProdutoRepositoryGateway produtoRepositoryGateway, IPedidoPublishQueueAdapter pedidoPublishQueueAdapter) {
     this.pedidoRepositoryGateway = pedidoRepositoryGateway;
     this.produtoRepositoryGateway = produtoRepositoryGateway;
+    this.pedidoPublishQueueAdapter = pedidoPublishQueueAdapter;
   }
 
+  //TODO deveria estar aqui?
+  @Transactional
   @Override
   public Pedido montaPedido(Pedido pedido) throws ProdutoNotFoundException, ClienteNaoInformadoException {
     if (Objects.isNull(pedido.getClienteId())) {
       throw new ClienteNaoInformadoException("Cliente não informado.");
-    }
-
-    // verficação de informações de pagamento
-    if (Objects.nonNull(pedido.getPagamentoId())) {
-      /* verifica o metodo de pagamento
-        Buscar o metodo de pagamento pelo id usando chamada externa via rest
-        gerar exceção = Método de pagamento não informado ou inválido
-        gerar exceção = Método de pagamento não exites na nossa base
-        quando mandar para a fonte pagadora mudar novamente para pendente
-       */
     }
 
     if (Objects.nonNull(pedido.getIdentificacao())
@@ -49,15 +46,20 @@ public class PedidoEmAndamentoUseCaseImpl implements IPedidoEmAndamentoPort {
     for (PedidoItem pedidoItem : pedido.getItens()) {
       pedidoItem.setProduto(this.produtoRepositoryGateway.buscarPeloId(pedidoItem.getProduto().getId()));
     }
-    return this.pedidoRepositoryGateway.salvar(pedido);
+    Pedido pedidoSalvo = this.pedidoRepositoryGateway.salvar(pedido);
+
+    this.pedidoPublishQueueAdapter.publishRecebido(pedidoSalvo.toJson());
+
+    return pedidoSalvo;
   }
 
   /**
    * sinalizar que o pagamento foi efetuado
    */
   @Override
-  public void efetuaPagamento() {
-    // TODO document why this method is empty
+  public void pagamentoEfetuado(UUID pedidoId, UUID pagamentoId) {
+    Pedido pedido = this.pedidoRepositoryGateway.buscarPeloId(pedidoId);
+    pedido.setPagamentoId(pagamentoId);
   }
 
 }

@@ -1,5 +1,6 @@
 package br.com.fiap.soat.grupo48.pedido.application.domain.model;
 
+import br.com.fiap.soat.grupo48.commons.domain.model.JsonMapper;
 import lombok.*;
 
 import java.util.Date;
@@ -12,7 +13,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @ToString
 @EqualsAndHashCode
-public class Pedido {
+public class Pedido extends JsonMapper {
 
   private UUID id;
   private UUID clienteId;

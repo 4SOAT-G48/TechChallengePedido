@@ -11,6 +11,17 @@ public enum SituacaoPedido {
    * para seu pedido e fez seu pagamento
    */
   RECEBIDO,
+
+  /**
+   * Pedido aguardando pagamento
+   */
+  AGUARDANDO_PAGAMENTO,
+
+  /**
+   * Pagamento efetuado pelo cliente
+   */
+  PAGAMENTO_EFETUADO,
+
   /**
    * A cozinha separou o pedido para
    * começar a montagem

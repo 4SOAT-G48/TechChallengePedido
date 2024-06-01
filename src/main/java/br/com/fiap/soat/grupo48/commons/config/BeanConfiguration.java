@@ -4,6 +4,7 @@ import br.com.fiap.soat.grupo48.pedido.application.service.PedidoEmAndamentoUseC
 import br.com.fiap.soat.grupo48.pedido.application.service.PedidoSituacaoUseCaseImpl;
 import br.com.fiap.soat.grupo48.pedido.application.service.port.in.IPedidoEmAndamentoPort;
 import br.com.fiap.soat.grupo48.pedido.application.service.port.in.IPedidoSituacaoPort;
+import br.com.fiap.soat.grupo48.pedido.application.service.port.out.IPedidoPublishQueueAdapter;
 import br.com.fiap.soat.grupo48.pedido.application.service.port.out.IPedidoRepositoryGateway;
 import br.com.fiap.soat.grupo48.produto.application.service.ManutecaoProdutoUsecaseImpl;
 import br.com.fiap.soat.grupo48.produto.application.service.port.in.IProdutoPort;
@@ -21,8 +22,9 @@ public class BeanConfiguration {
 
   @Bean
   IPedidoEmAndamentoPort pedidoUseCase(IPedidoRepositoryGateway pedidoRepositoryGateway,
-                                       IProdutoRepositoryGateway produtoRepositoryGateway) {
-    return new PedidoEmAndamentoUseCaseImpl(pedidoRepositoryGateway, produtoRepositoryGateway);
+                                       IProdutoRepositoryGateway produtoRepositoryGateway,
+                                       IPedidoPublishQueueAdapter pedidoPublishQueueAdapter) {
+    return new PedidoEmAndamentoUseCaseImpl(pedidoRepositoryGateway, produtoRepositoryGateway, pedidoPublishQueueAdapter);
   }
 
   @Bean
