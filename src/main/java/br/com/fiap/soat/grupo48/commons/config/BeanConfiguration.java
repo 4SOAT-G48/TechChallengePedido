@@ -1,5 +1,8 @@
 package br.com.fiap.soat.grupo48.commons.config;
 
+import br.com.fiap.soat.grupo48.cliente.application.service.ClienteUsecaseImpl;
+import br.com.fiap.soat.grupo48.cliente.application.service.port.in.IClientePort;
+import br.com.fiap.soat.grupo48.cliente.application.service.port.out.IClienteRepositoryGateway;
 import br.com.fiap.soat.grupo48.pedido.application.service.PedidoEmAndamentoUseCaseImpl;
 import br.com.fiap.soat.grupo48.pedido.application.service.PedidoSituacaoUseCaseImpl;
 import br.com.fiap.soat.grupo48.pedido.application.service.port.in.IPedidoEmAndamentoPort;
@@ -30,5 +33,10 @@ public class BeanConfiguration {
   @Bean
   IPedidoSituacaoPort pedidoSituacaoPort(IPedidoRepositoryGateway pedidoRepositoryGateway) {
     return new PedidoSituacaoUseCaseImpl(pedidoRepositoryGateway);
+  }
+
+  @Bean
+  IClientePort clienteUseCase(IClienteRepositoryGateway clienteRepositoryGateway) {
+    return new ClienteUsecaseImpl(clienteRepositoryGateway);
   }
 }

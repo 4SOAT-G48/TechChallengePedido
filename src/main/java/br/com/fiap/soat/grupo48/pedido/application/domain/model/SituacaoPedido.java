@@ -1,47 +1,52 @@
 package br.com.fiap.soat.grupo48.pedido.application.domain.model;
 
 public enum SituacaoPedido {
-  /**
-   * Cliente está montando seu pedido
-   */
-  EM_ANDAMENTO,
+    /**
+     * Cliente está montando seu pedido
+     */
+    EM_ANDAMENTO,
 
-  /**
-   * Cliente terminou de escolher os itens
-   * para seu pedido e fez seu pagamento
-   */
-  RECEBIDO,
+    /**
+     * Cliente terminou de escolher os itens
+     * para seu pedido e fez seu pagamento
+     */
+    RECEBIDO,
 
-  /**
-   * Pedido aguardando pagamento
-   */
-  AGUARDANDO_PAGAMENTO,
+    /**
+     * Pedido aguarda pagamento
+     */
+    AGUARDANDO_PAGAMENTO,
 
-  /**
-   * Pagamento efetuado pelo cliente
-   */
-  PAGAMENTO_EFETUADO,
+    /**
+     * Cliente pagou o pedido
+     */
+    PAGO,
 
-  /**
-   * A cozinha separou o pedido para
-   * começar a montagem
-   */
-  EM_PREPARACAO,
+    /**
+     * Pedido falhou pagamento
+     */
+    FALHA_PAGAMENTO,
 
-  /**
-   * A cozinha terminou a montagem e
-   * passou para o atendente fazer a entrega
-   */
-  PRONTO,
+    /**
+     * A cozinha separou o pedido para
+     * começar a montagem
+     */
+    EM_PREPARACAO,
 
-  /**
-   * O atendente passou o pedido para a
-   * faze de entrega, o cliente pode vir buscar o pedido.
-   */
-  EM_ENTREGA,
+    /**
+     * A cozinha terminou a montagem e
+     * passou para o atendente fazer a entrega
+     */
+    PRONTO,
 
-  /**
-   * pedido entregue ao cliente
-   */
-  FINALIZADO
+    /**
+     * O atendente passou o pedido para a
+     * faze de entrega, o cliente pode vir buscar o pedido.
+     */
+    EM_ENTREGA,
+
+    /**
+     * pedido entregue ao cliente
+     */
+    FINALIZADO
 }
