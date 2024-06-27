@@ -1,5 +1,6 @@
 package br.com.fiap.soat.grupo48.cliente.application.domain.model;
 
+import br.com.fiap.soat.grupo48.cliente.domain.model.Cliente;
 import br.com.fiap.soat.grupo48.cliente.utils.ClienteHelper;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;

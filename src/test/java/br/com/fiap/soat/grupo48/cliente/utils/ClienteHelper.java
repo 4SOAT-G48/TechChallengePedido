@@ -1,6 +1,6 @@
 package br.com.fiap.soat.grupo48.cliente.utils;
 
-import br.com.fiap.soat.grupo48.cliente.application.domain.model.Cliente;
+import br.com.fiap.soat.grupo48.cliente.domain.model.Cliente;
 import br.com.fiap.soat.grupo48.cliente.infra.adapter.db.ClienteEntity;
 import br.com.fiap.soat.grupo48.utils.FormatoHelper;
 

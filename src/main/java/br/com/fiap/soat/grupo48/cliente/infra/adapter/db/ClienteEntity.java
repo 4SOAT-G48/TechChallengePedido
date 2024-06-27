@@ -1,6 +1,6 @@
 package br.com.fiap.soat.grupo48.cliente.infra.adapter.db;
 
-import br.com.fiap.soat.grupo48.cliente.application.domain.model.Cliente;
+import br.com.fiap.soat.grupo48.cliente.domain.model.Cliente;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -35,5 +35,5 @@ public class ClienteEntity {
     public Cliente toCliente() {
         return new Cliente(this.id, this.nome, this.cpf, this.email);
     }
-    
+
 }

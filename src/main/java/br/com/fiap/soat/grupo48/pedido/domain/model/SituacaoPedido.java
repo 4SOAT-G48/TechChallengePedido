@@ -1,4 +1,4 @@
-package br.com.fiap.soat.grupo48.pedido.application.domain.model;
+package br.com.fiap.soat.grupo48.pedido.domain.model;
 
 public enum SituacaoPedido {
     /**

@@ -12,15 +12,15 @@ import org.springframework.stereotype.Service;
 @Slf4j
 public class PedidoPublishQueueAdapter implements IPedidoPublishQueueAdapter {
 
-  @Value(value = "${queue.pedidos.recebidos.name}")
-  private static String PEDIDOS_RECEBIDOS_QUEUE;
+    @Value(value = "${queue.pedido.registrado.name}")
+    private static String PEDIDOS_RECEBIDOS_QUEUE;
 
-  @Autowired
-  private RabbitTemplate rabbitTemplate;
+    @Autowired
+    private RabbitTemplate rabbitTemplate;
 
-  @Override
-  public void publishRecebido(@Payload String message) {
-    this.rabbitTemplate.convertAndSend(PEDIDOS_RECEBIDOS_QUEUE, message);
-    log.info("Mensagem enviada para a fila de pedidos recebidos: {}", message);
-  }
+    @Override
+    public void publishRecebido(@Payload String message) {
+        this.rabbitTemplate.convertAndSend(PEDIDOS_RECEBIDOS_QUEUE, message);
+        log.info("Mensagem enviada para a fila de pedidos recebidos: {}", message);
+    }
 }

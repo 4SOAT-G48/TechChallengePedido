@@ -1,4 +1,4 @@
-package br.com.fiap.soat.grupo48.cliente.application.domain.model;
+package br.com.fiap.soat.grupo48.cliente.domain.model;
 
 import lombok.*;
 
