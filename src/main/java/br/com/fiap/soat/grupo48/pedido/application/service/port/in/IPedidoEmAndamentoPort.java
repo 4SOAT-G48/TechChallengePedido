@@ -16,7 +16,7 @@ public interface IPedidoEmAndamentoPort {
      * @param pedido pedido com os dados a serem salvos
      * @return pedido com os dados conforme salvos
      */
-    Pedido montaPedido(Pedido pedido) throws MetodoPagamentoInvalidoException, ProdutoNotFoundException, ClienteNaoInformadoException, InterruptedException;
+    Pedido montaPedido(Pedido pedido) throws MetodoPagamentoInvalidoException, ProdutoNotFoundException, ClienteNaoInformadoException;
 
     /**
      * Registra que o pagamento foi efetuado

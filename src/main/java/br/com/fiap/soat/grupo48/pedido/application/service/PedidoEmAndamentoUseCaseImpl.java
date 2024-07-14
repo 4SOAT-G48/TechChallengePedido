@@ -29,7 +29,7 @@ public class PedidoEmAndamentoUseCaseImpl implements IPedidoEmAndamentoPort {
 
     @Override
     @Transactional
-    public Pedido montaPedido(Pedido pedido) throws ProdutoNotFoundException, ClienteNaoInformadoException, InterruptedException {
+    public Pedido montaPedido(Pedido pedido) throws ProdutoNotFoundException, ClienteNaoInformadoException {
         if (Objects.isNull(pedido.getClienteId())) {
             throw new ClienteNaoInformadoException("Cliente não informado.");
         }
