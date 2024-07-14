@@ -16,21 +16,21 @@ import java.util.UUID;
 @Service
 public class PedidoReceverQueueAdapter implements IPedidoReceverQueueAdapter {
 
-  private final IPedidoEmAndamentoPort pedidoEmAndamentoPort;
+    private final IPedidoEmAndamentoPort pedidoEmAndamentoPort;
 
-  private final Gson gson;
+    private final Gson gson;
 
-  @Autowired
-  public PedidoReceverQueueAdapter(IPedidoEmAndamentoPort pedidoEmAndamentoPort, Gson gson) {
-    this.pedidoEmAndamentoPort = pedidoEmAndamentoPort;
-    this.gson = gson;
-  }
+    @Autowired
+    public PedidoReceverQueueAdapter(IPedidoEmAndamentoPort pedidoEmAndamentoPort, Gson gson) {
+        this.pedidoEmAndamentoPort = pedidoEmAndamentoPort;
+        this.gson = gson;
+    }
 
-  @RabbitListener(queues = "${queue.pagamento.efetuado.name}")
-  @Override
-  public void receive(@Payload String message) {
-    HashMap<String, String> map = gson.fromJson(message, HashMap.class);
-    pedidoEmAndamentoPort.pagamentoEfetuado(UUID.fromString(map.get("pedidoId")), UUID.fromString(map.get("pagamentoId")));
-    log.info("Mensagem recebida da fila de pagamento efetuado: {}", message);
-  }
+    @RabbitListener(queues = "${message.recever.pagamento.efetuado.queues}")
+    @Override
+    public void receive(@Payload String message) {
+        HashMap<String, String> map = gson.fromJson(message, HashMap.class);
+        pedidoEmAndamentoPort.pagamentoEfetuado(UUID.fromString(map.get("pedidoId")), UUID.fromString(map.get("pagamentoId")));
+        log.info("Mensagem recebida da fila de pagamento efetuado: {}", message);
+    }
 }

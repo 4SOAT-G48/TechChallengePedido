@@ -6,15 +6,23 @@ import java.time.LocalDateTime;
 import java.time.temporal.WeekFields;
 
 public class GeradorDeNumeroSequencial {
+    private static final String[] MESES = {
+        "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L"
+    };
+    private static final String[] SEMANAS = {
+        "A", "B", "C", "D", "E"
+    };
+
     private static GeradorDeNumeroSequencial instance;
     private final DecimalFormat df;
     private int numeroSequencial = 0;
     private LocalDate ultimoReset = LocalDate.MIN;
     private String letraMes;
     private String letraSemana;
+    private int numeroDia;
 
     private GeradorDeNumeroSequencial() {
-        df = new DecimalFormat("000000");
+        df = new DecimalFormat("00000");
     }
 
     public static synchronized GeradorDeNumeroSequencial getInstance() {
@@ -31,11 +39,12 @@ public class GeradorDeNumeroSequencial {
             ultimoReset = hoje;
             var dataHoraAtual = LocalDateTime.now();
             var mes = dataHoraAtual.getMonthValue();
-            var semana = dataHoraAtual.get(WeekFields.ISO.weekOfWeekBasedYear());
+            var semana = dataHoraAtual.get(WeekFields.ISO.weekOfMonth());
+            numeroDia = dataHoraAtual.getDayOfMonth();
 
-            letraMes = Character.toString((char) (mes + 'A' - 1));
-            letraSemana = Character.toString((char) (semana + 'A' - 1));
+            letraMes = MESES[mes - 1];
+            letraSemana = SEMANAS[semana - 1];
         }
-        return letraMes + letraSemana + df.format(++numeroSequencial);
+        return letraMes + letraSemana + numeroDia + df.format(++numeroSequencial);
     }
 }

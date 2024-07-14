@@ -1,8 +1,8 @@
 package br.com.fiap.soat.grupo48.pedido.application.service.port.in;
 
-import br.com.fiap.soat.grupo48.pedido.domain.model.Pedido;
 import br.com.fiap.soat.grupo48.pedido.application.service.exception.ClienteNaoInformadoException;
 import br.com.fiap.soat.grupo48.pedido.application.service.exception.MetodoPagamentoInvalidoException;
+import br.com.fiap.soat.grupo48.pedido.domain.model.Pedido;
 import br.com.fiap.soat.grupo48.produto.application.service.exception.ProdutoNotFoundException;
 
 import java.util.UUID;
@@ -16,7 +16,7 @@ public interface IPedidoEmAndamentoPort {
      * @param pedido pedido com os dados a serem salvos
      * @return pedido com os dados conforme salvos
      */
-    Pedido montaPedido(Pedido pedido) throws MetodoPagamentoInvalidoException, ProdutoNotFoundException, ClienteNaoInformadoException;
+    Pedido montaPedido(Pedido pedido) throws MetodoPagamentoInvalidoException, ProdutoNotFoundException, ClienteNaoInformadoException, InterruptedException;
 
     /**
      * Registra que o pagamento foi efetuado
