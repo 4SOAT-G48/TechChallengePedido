@@ -1,8 +1,8 @@
 package br.com.fiap.soat.grupo48.pedido.application.service.port.in;
 
-import br.com.fiap.soat.grupo48.pedido.domain.model.Pedido;
 import br.com.fiap.soat.grupo48.pedido.application.service.exception.ClienteNaoInformadoException;
 import br.com.fiap.soat.grupo48.pedido.application.service.exception.MetodoPagamentoInvalidoException;
+import br.com.fiap.soat.grupo48.pedido.domain.model.Pedido;
 import br.com.fiap.soat.grupo48.produto.application.service.exception.ProdutoNotFoundException;
 
 import java.util.UUID;
