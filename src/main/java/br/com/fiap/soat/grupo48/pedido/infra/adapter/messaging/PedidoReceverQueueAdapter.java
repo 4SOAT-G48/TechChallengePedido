@@ -5,7 +5,6 @@ import br.com.fiap.soat.grupo48.pedido.application.service.port.in.IPedidoReceve
 import com.google.gson.Gson;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Service;
 
@@ -20,7 +19,6 @@ public class PedidoReceverQueueAdapter implements IPedidoReceverQueueAdapter {
 
     private final Gson gson;
 
-    @Autowired
     public PedidoReceverQueueAdapter(IPedidoEmAndamentoPort pedidoEmAndamentoPort, Gson gson) {
         this.pedidoEmAndamentoPort = pedidoEmAndamentoPort;
         this.gson = gson;

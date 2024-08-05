@@ -54,12 +54,12 @@ public class PedidoPublishQueueAdapter implements IPedidoPublishQueueAdapter {
     @Override
     public void publishRegistrado(@Payload String message) {
         this.rabbitTemplate.convertAndSend(pedidosRegistradoExchange, pedidosRegistradoRoutekey, message);
-        log.info("Mensagem enviada para a fila de pedidos recebidos E:{} R:{} - {}", pedidosRegistradoExchange, pedidosRegistradoRoutekey, message);
+        log.info("Mensagem enviada para a fila de pedidos registrados E:{} R:{} - {}", pedidosRegistradoExchange, pedidosRegistradoRoutekey, message);
     }
 
     @Override
     public void publishRegistradoErro(String message) {
         this.rabbitTemplate.convertAndSend(pedidosRegistradoErroExchange, pedidosRegistradoErroRoutekey, message);
-        log.info("Mensagem enviada para a fila de pedidos recebidos com erro E:{} R:{} - {}", pedidosRegistradoErroExchange, pedidosRegistradoErroRoutekey, message);
+        log.info("Mensagem enviada para a fila de pedidos registrados com erro E:{} R:{} - {}", pedidosRegistradoErroExchange, pedidosRegistradoErroRoutekey, message);
     }
 }

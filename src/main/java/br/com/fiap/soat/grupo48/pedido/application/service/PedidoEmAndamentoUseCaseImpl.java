@@ -34,7 +34,8 @@ public class PedidoEmAndamentoUseCaseImpl implements IPedidoEmAndamentoPort {
             throw new ClienteNaoInformadoException("Cliente não informado.");
         }
 
-        if (Objects.nonNull(pedido.getIdentificacao()) && !pedido.getIdentificacao().isEmpty()) {
+        if (Objects.nonNull(pedido.getIdentificacao())
+            && !pedido.getIdentificacao().isEmpty()) {
             pedido.setIdentificacao(pedido.getIdentificacao());
         } else {
             pedido.setIdentificacao(GeradorDeNumeroSequencial.getInstance().proximoNumero());
@@ -42,7 +43,6 @@ public class PedidoEmAndamentoUseCaseImpl implements IPedidoEmAndamentoPort {
 
         //para cada item do pedido, busca o produto e seta no item
         for (PedidoItem pedidoItem : pedido.getItens()) {
-            // TODO: fazer tratamento para quando o ID do produto não existir/null
             pedidoItem.setProduto(this.produtoRepositoryGateway.buscarPeloId(pedidoItem.getProduto().getId()));
         }
         Pedido pedidoSalvo = this.pedidoRepositoryGateway.salvar(pedido);
@@ -51,7 +51,6 @@ public class PedidoEmAndamentoUseCaseImpl implements IPedidoEmAndamentoPort {
 
         return pedidoSalvo;
     }
-
 
     /**
      * sinalizar que o pagamento foi efetuado

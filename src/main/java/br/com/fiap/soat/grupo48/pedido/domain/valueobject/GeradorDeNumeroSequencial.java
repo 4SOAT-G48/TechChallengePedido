@@ -20,9 +20,10 @@ public class GeradorDeNumeroSequencial {
     private String letraMes;
     private String letraSemana;
     private int numeroDia;
+    private int hora;
 
     private GeradorDeNumeroSequencial() {
-        df = new DecimalFormat("00000");
+        df = new DecimalFormat("0000");
     }
 
     public static synchronized GeradorDeNumeroSequencial getInstance() {
@@ -40,11 +41,12 @@ public class GeradorDeNumeroSequencial {
             var dataHoraAtual = LocalDateTime.now();
             var mes = dataHoraAtual.getMonthValue();
             var semana = dataHoraAtual.get(WeekFields.ISO.weekOfMonth());
-            numeroDia = dataHoraAtual.getDayOfMonth();
 
             letraMes = MESES[mes - 1];
             letraSemana = SEMANAS[semana - 1];
+
+            numeroDia = dataHoraAtual.getDayOfMonth();
         }
-        return letraMes + letraSemana + numeroDia + df.format(++numeroSequencial);
+        return letraMes + letraSemana + numeroDia + LocalDateTime.now().getHour() + df.format(++numeroSequencial);
     }
 }

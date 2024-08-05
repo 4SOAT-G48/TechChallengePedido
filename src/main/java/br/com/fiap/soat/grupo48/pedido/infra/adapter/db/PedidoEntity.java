@@ -79,6 +79,7 @@ public class PedidoEntity {
     }
 
     public Pedido toPedido() {
+
         return new Pedido(this.getId(), this.getClienteId(),
             this.getSituacao(), this.getIdentificacao(),
             this.getItens().stream().map(PedidoItemEntity::toPedidoItem).toList(),

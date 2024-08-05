@@ -65,6 +65,11 @@ message:
         exchange: ${EXCHANGE_PAGAMENTO_EFETUADO}
         route-key: ${ROUTEKEY_PAGAMENTO_EFETUADO}
         queues: ${QUEUES_PAGAMENTO_EFETUADO}
+    pedido:
+      mudanca-situacao:
+        exchange: ${EXCHANGE_PEDIDO_MUDANCA_SITUACAO}
+        route-key: ${ROUTEKEY_PEDIDO_MUDANCA_SITUACAO}
+        queues: ${QUEUES_PEDIDO_MUDANCA_SITUACAO}
 
 
 eureka:
