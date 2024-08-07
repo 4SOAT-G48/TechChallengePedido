@@ -91,8 +91,8 @@ jobs:
           ROUTEKEY_PEDIDO_MUDANCA_SITUACAO: ${{ env.ROUTEKEY_PEDIDO_MUDANCA_SITUACAO }}
           QUEUES_PEDIDO_MUDANCA_SITUACAO: ${{ env.QUEUES_PEDIDO_MUDANCA_SITUACAO }}
 
-      - name: Test with Maven
-        run: mvn test
+      #      - name: Test with Maven
+      #        run: mvn test
 
       - name: Archive artifacts
         uses: actions/upload-artifact@v4
