@@ -1,0 +1,38 @@
+version: '3'
+
+services:
+  db:
+    container_name: fiap_db
+    image: postgres:16-alpine
+    ports:
+      - "5432:5432"
+    env_file: .env
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      - fiap
+
+  spring:
+    image: fiap-4soat-g48-backend:dev
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: fiap_api
+    ports:
+      - "8080:8080"
+    volumes:
+      - volume-log:/logs
+    depends_on:
+      - db
+    env_file: .env
+    environment:
+      - LOGGING_FILE_NAME=${LOG_PATH}
+    networks:
+      - fiap
+
+volumes:
+  volume-log:
+  pgdata:
+networks:
+  fiap:
+    driver: bridge
