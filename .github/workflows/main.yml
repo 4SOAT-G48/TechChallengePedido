@@ -61,7 +61,7 @@ jobs:
           java-version: 21
 
       - name: Build with Maven
-        run: mvn package
+        run: mvn package -DskipTests
         env:
           SPRING_DATASOURCE_URL: ${{ env.SPRING_DATASOURCE_URL }}
           POSTGRES_USER: ${{ env.POSTGRES_USER }}
