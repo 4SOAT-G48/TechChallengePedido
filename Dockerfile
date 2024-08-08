@@ -16,13 +16,13 @@ COPY pom.xml /app
 RUN mvn clean install -DskipTests
 
 # Para a fase de execução é utilizado a imagem Java baseada no JRE
-FROM eclipse-temurin:17-jdk-alpine
+FROM eclipse-temurin:21-jdk-alpine
 
 # Copiando o arquivo jar da fase de build
 COPY --from=build /app/target/grupo48-pedido-0.0.1-SNAPSHOT.jar /app.jar
 
 # Porta padrão da aplicação Spring Boot
-EXPOSE 8080
+EXPOSE 8081
 
 # Montagem de volume para registro de logs
 VOLUME /logs
